@@ -1,6 +1,28 @@
 -- Meta-tests: enforce the RLS golden rule on every table, present and future.
 begin;
-select plan(9);
+select plan(10);
+
+-- MFA is mandatory: every public table has a restrictive aal2 policy per operation.
+select is(
+  (
+    select array_agg(c.relname || ':' || op order by 1)
+      from pg_class c
+      join pg_namespace n on n.oid = c.relnamespace
+      cross join unnest(array['r', 'a', 'w', 'd']) as op
+     where n.nspname = 'public'
+       and c.relkind in ('r', 'p')
+       and not exists (
+         select 1
+           from pg_policy p
+          where p.polrelid = c.oid
+            and not p.polpermissive
+            and p.polcmd = op::"char"
+            and pg_get_expr(coalesce(p.polqual, p.polwithcheck), p.polrelid) like '%is_aal2()%'
+       )
+  ),
+  null,
+  'every public table requires aal2 (restrictive policy) for select/insert/update/delete'
+);
 
 select is(
   (
