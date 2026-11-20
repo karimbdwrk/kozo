@@ -64,7 +64,9 @@ as $$
      and (r.system_key = p_key or r.name = p_key);
 $$;
 
-create or replace function tests.authenticate_as(p_key text, p_aal text default 'aal1')
+-- Default aal2: MFA is mandatory, so normal sessions have completed TOTP.
+-- Pass 'aal1' to simulate a session that has not verified its second factor.
+create or replace function tests.authenticate_as(p_key text, p_aal text default 'aal2')
 returns void
 language plpgsql
 as $$
