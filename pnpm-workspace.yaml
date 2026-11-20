@@ -10,4 +10,11 @@ catalog:
   "@types/node": ^24.19.2
   typescript: ~6.0.3
   zod: ^4.6.7
+  eslint: ^9.39.5
+  vitest: ^5.1.1
   "@supabase/supabase-js": ^2.119.2
+
+# pnpm blocks dependency install scripts by default: allow them explicitly, one by one.
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
