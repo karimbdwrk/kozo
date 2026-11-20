@@ -37,3 +37,8 @@ supabase/.branches/
 *.log
 next-env.d.ts
 .vercel
+.metro-health-check*
+.kotlin/
+web-build/
+*.orig.*
+*.pem

@@ -16,5 +16,6 @@ catalog:
 
 # pnpm blocks dependency install scripts by default: allow them explicitly, one by one.
 allowBuilds:
+  "@parcel/watcher": false
   sharp: false
   unrs-resolver: false
