@@ -6,3 +6,5 @@ pnpm-lock.yaml
 supabase/.temp
 **/database.types.ts
 apps/web/components/ui
+apps/mobile/src/components/ui
+apps/mobile/uniwind-types.d.ts
