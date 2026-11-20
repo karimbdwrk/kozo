@@ -34,3 +34,23 @@ jobs:
       - run: pnpm lint
 
       - run: pnpm format:check
+
+  database:
+    name: Database tests (pgTAP)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: supabase/setup-cli@v3
+        with:
+          version: 3.2.0
+
+      # Throwaway local Postgres (Docker on the runner): applies every migration.
+      - run: supabase db start
+
+      # RLS isolation, permissions and centre creation tests.
+      - run: supabase test db
+
+      - if: always()
+        run: supabase stop --no-backup
