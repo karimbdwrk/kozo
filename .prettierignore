@@ -8,3 +8,4 @@ supabase/.temp
 apps/web/components/ui
 apps/mobile/src/components/ui
 apps/mobile/uniwind-types.d.ts
+supabase/templates
