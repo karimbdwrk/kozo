@@ -7,7 +7,8 @@ réglementées. V1 = OF uniquement. Les écoles (notes, bulletins, ECTS) sont ho
 
 - Entité pivot : la `session` (créneau daté = cohorte + module + formateur + salle).
   Émargement, documents et évaluations s'y rattachent.
-- Hiérarchie : organization → site (établissement) → room (salle).
+- Hiérarchie : organization (« centre » dans l'UI) → campus (une adresse ; table
+  `campuses`, porte le SIRET) → room (salle). Vocabulaire UI : centre, campus, salle.
 - Rôles : super_admin, direction, pedagogique, admin_staff, commercial, comptabilite,
   qualite, referent_handicap, formateur, apprenant, + rôles entreprise
   (admin, rh, tuteur, comptabilite) et financeur (lecture seule).
